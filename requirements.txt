@@ -1,0 +1,7 @@
+streamlit
+streamlit-chat
+together
+torch
+sentence-transformers
+pymongo
+requests
