@@ -17,7 +17,7 @@ if sys.platform.startswith('win'):
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 # LLM Configuration
-TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY", "89f13a053f68784660edf1ac4fc8c2e3cfd83092338883bf0009f46e9408dff3")
+TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
 together_client = Together(api_key=TOGETHER_API_KEY)
 LLM_MODEL = "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
 system_message = {
