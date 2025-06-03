@@ -1,6 +1,12 @@
 import streamlit as st
 from ai_agent_llama import tool_calling
 from streamlit_chat import message  # Optional, adds nice chat bubbles
+import pkg_resources
+import streamlit as st
+
+installed_packages = [d.project_name for d in pkg_resources.working_set]
+st.write("📦 Installed packages:", installed_packages)
+
 
 st.set_page_config(page_title="Stock Market Assistant", page_icon="📈", layout="wide")
 
