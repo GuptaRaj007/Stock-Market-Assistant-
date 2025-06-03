@@ -19,7 +19,7 @@ torch.classes.__path__ = [os.path.join(torch.__path__[0], torch.classes.__file__
 #     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 # LLM Configuration
-TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"] 
+TOGETHER_API_KEY = os.environ["TOGETHER_API_KEY"]
 together_client = Together(api_key=TOGETHER_API_KEY)
 LLM_MODEL = "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
 
