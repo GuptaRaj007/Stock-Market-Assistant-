@@ -3,5 +3,5 @@ streamlit-chat
 together
 torch
 sentence-transformers
-pymongo
+pymongo[srv]
 requests
