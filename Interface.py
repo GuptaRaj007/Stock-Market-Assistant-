@@ -1,7 +1,6 @@
 import streamlit as st
 from ai_agent_llama import tool_calling
 from streamlit_chat import message  # Optional, adds nice chat bubbles
-import pkg_resources
 import streamlit as st
 
 
