@@ -10,16 +10,18 @@ db_password_raw = st.secrets["MONGO_DB_PASSWORD"]
 db_user = quote_plus(db_user_raw)
 db_password = quote_plus(db_password_raw)
 
-# ✅ Updated URI with explicit TLS support
+# ✅ Robust MongoDB URI for Streamlit Community Cloud
 uri = (
     f"mongodb+srv://{db_user}:{db_password}@cluster0.xx3zem0.mongodb.net/"
-    f"?retryWrites=true&w=majority&tls=true&tlsInsecure=true"
+    f"?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true"
 )
 
 def get_mongo_collection():
+    """Connects to MongoDB Atlas and returns the stock and F&O collections."""
     try:
         client = MongoClient(uri)
         db = client["stock_db"]
+        print("✅ Successfully connected to MongoDB Atlas!")
         return db["stock_col"], db["fo_col"]
     except Exception as e:
         print(f"❌ MongoDB connection failed: {e}")
