@@ -1,11 +1,11 @@
 from pymongo import MongoClient
 from urllib.parse import quote_plus
 import streamlit as st
+import os
 
-# Secure credentials from Streamlit secrets
-db_user_raw = st.secrets["MONGO_DB_USER"]
-db_password_raw = st.secrets["MONGO_DB_PASSWORD"]
-
+# Secure credentials from environment variables
+db_user_raw = os.environ["MONGO_DB_USER"]
+db_password_raw = os.environ["MONGO_DB_PASSWORD"]
 # URL encoding
 db_user = quote_plus(db_user_raw)
 db_password = quote_plus(db_password_raw)
