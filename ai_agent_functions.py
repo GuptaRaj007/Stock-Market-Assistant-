@@ -19,7 +19,7 @@ class Functions:
     @staticmethod
     def get_stock_additional_info(query: str) -> str:
         print("Executing method get_stock_additional_info")
-        stock_col, fo_col = get_mongo_collection()  # unpack both collections
+        stock_col, fo_col = get_mongo_collection()
         embedding = EmbeddingGenerator.generate(query)
 
         results = stock_col.aggregate([
