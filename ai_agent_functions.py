@@ -19,10 +19,10 @@ class Functions:
     @staticmethod
     def get_stock_additional_info(query: str) -> str:
         print("Executing method get_stock_additional_info")
-        collection = get_mongo_collection()
+        stock_col, fo_col = get_mongo_collection()  # unpack both collections
         embedding = EmbeddingGenerator.generate(query)
 
-        results = collection.aggregate([
+        results = stock_col.aggregate([
             {
                 "$vectorSearch": {
                     "queryVector": embedding,
