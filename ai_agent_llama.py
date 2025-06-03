@@ -9,21 +9,24 @@ import asyncio
 import os
 import torch
 import json
+import streamlit as st
 from together import Together
 
-# Fix for Torch on Windows
+# Fix for Torch on Windows (optional, can be removed if not needed)
 torch.classes.__path__ = [os.path.join(torch.__path__[0], torch.classes.__file__)]
-if sys.platform.startswith('win'):
-    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+# Remove this block entirely, since it breaks Linux environments:
+# if sys.platform.startswith('win'):
+#     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 # LLM Configuration
 TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"] 
 together_client = Together(api_key=TOGETHER_API_KEY)
 LLM_MODEL = "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
+
 system_message = {
     "role": "system",
     "content": '''
-You are an AI stock analyst chatbot that answers financial queries using tool-based functions only.'''
+You are an AI stock analyst chatbot that answers financial queries using tool-based functions only.''',
 }
 
 # Call the LLM
