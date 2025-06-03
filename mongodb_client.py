@@ -11,10 +11,16 @@ db_user = quote_plus(db_user_raw)
 db_password = quote_plus(db_password_raw)
 
 # ✅ Updated URI with explicit TLS support
-uri = f"mongodb+srv://{db_user}:{db_password}@cluster0.xx3zem0.mongodb.net/?tls=true&retryWrites=true&w=majority"
+uri = (
+    f"mongodb+srv://{db_user}:{db_password}@cluster0.xx3zem0.mongodb.net/"
+    f"?retryWrites=true&w=majority&tls=true&tlsInsecure=true"
+)
 
 def get_mongo_collection():
-    """Connects to MongoDB Atlas and returns the stock collection."""
-    client = MongoClient(uri)
-    db = client["stock_db"]
-    return db["stock_col"], db["fo_col"]
+    try:
+        client = MongoClient(uri)
+        db = client["stock_db"]
+        return db["stock_col"], db["fo_col"]
+    except Exception as e:
+        print(f"❌ MongoDB connection failed: {e}")
+        return None, None
