@@ -1,9 +1,10 @@
 from pymongo import MongoClient
 from urllib.parse import quote_plus
+import streamlit as st  # ✅ Import Streamlit
 
-# Raw credentials
-db_user_raw = "guptaraj5445"
-db_password_raw = "NIlvTeCbThevt3A9"
+# Secure credentials from Streamlit secrets
+db_user_raw = st.secrets["MONGO_DB_USER"]       # ✅ No hardcoding
+db_password_raw = st.secrets["MONGO_DB_PASSWORD"]
 
 # URL encoding
 db_user = quote_plus(db_user_raw)
@@ -16,4 +17,4 @@ def get_mongo_collection():
     """Connects to MongoDB Atlas and returns the stock collection."""
     client = MongoClient(uri)
     db = client["stock_db"]
-    return db["stock_col"],db["fo_col"]
+    return db["stock_col"], db["fo_col"]
